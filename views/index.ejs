@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>JavaScript - read JSON from URL</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  </head>
+
+  <body>
+    <div class="mypanel"></div>
+    <ul>
+      <% if(centres.length>0){
+      centres.forEach(centre=>{ 
+        var ctr=0;
+        sessions=centre.sessions;
+        sessions.forEach(session=>{
+          if(session.available_capacity>0)
+          ctr+=1;
+        });
+        if(ctr>0){%>
+      <li>
+        <h3>Centre name: <%=centre.name%></h3>
+        <br>Address: <%=centre.address%></br>
+        <ul>
+        <% sessions.forEach(session=>{
+          if(session.available_capacity>0){ %>
+            
+            <li>Date: <%=session.date%>
+            <br>Vaccine: <%=session.vaccine%>
+            <br>Capacity: <%=session.available_capacity%>
+            <br>Min age: <%=session.min_age_limit%></Date:></li>
+            
+         <% }
+        });%>
+        </ul>
+      </li>
+      <%}%>
+      <% }); } else {%>
+      <p>No centres found.</p>
+      <%}%>
+    </ul>
+    <script>
+      // $.getJSON(
+      //   "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=149&date=24-05-2021",
+      //   function (data) {
+      //     var ses = data.sessions;
+      //     console.log(ses);
+      //     // $(".mypanel").html(text);
+      //   }
+      // );
+    </script>
+  </body>
+</html>
