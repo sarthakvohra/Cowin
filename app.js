@@ -7,7 +7,6 @@ app.listen(3000);
 app.set("view engine", "ejs");
 var data = [],
   i = 0;
-
 // app.use(bodyParser.json()); // for parsing application/json
 // app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -22,7 +21,6 @@ function abcd(districtID, date) {
   console.log(url);
   var request = new XMLHttpRequest();
   request.open("GET", url, true);
-  var centres;
   request.onload = function () {
     if (request.status >= 200 && request.status < 400) {
       // Success!
@@ -42,11 +40,26 @@ function abcd(districtID, date) {
   request.send();
   return data;
 }
-centres = abcd("149", "16-05-2021");
+
+var districtID;
+
+today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //As January is 0.
+var yyyy = today.getFullYear();
+if (dd < 10) dd = "0" + dd;
+if (mm < 10) mm = "0" + mm;
+date = dd + "-" + mm + "-" + yyyy;
+// centres = abcd("149", date);
+centres = abcd(districtID, date);
 console.log(centres);
-app.get("/", (req, res) =>
-  res.render("index", { centres: centres[0]["centers"] })
-);
+
+app.get("/:id", (req, res) => {
+  // console.log(date);
+  const id = req.params.id;
+  districtID = id;
+  res.render("index", { centres: centres[0]["centers"] });
+});
 
 app.get("/form", (req, res) => res.render("getDistrict"));
 
@@ -54,4 +67,6 @@ app.post("/form", (req, res) => {
   // const { districtID, districtName, date } = req.body;
   const { districtID, date } = req.body;
   console.log(districtID, date);
+  res.json({ redirect: "/" + districtID });
+  // res.redirect("/");
 });
