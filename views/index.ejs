@@ -9,12 +9,14 @@
     <div class="mypanel"></div>
     <ul>
       <% if(centres.length>0){
+        var totalCentres=0;
       centres.forEach(centre=>{ 
         var ctr=0;
         sessions=centre.sessions;
         sessions.forEach(session=>{
-          if(session.available_capacity>0)
+          if(session.available_capacity>0){
           ctr+=1;
+          totalCentres+=1;}
         });
         if(ctr>0){%>
       <li>
@@ -34,10 +36,14 @@
         </ul>
       </li>
       <%}%>
-      <% }); } else {%>
+      <% }); 
+    if (totalCentres==0){ %>
+      <p>No centres found.</p>
+    <%}} else {%>
       <p>No centres found.</p>
       <%}%>
     </ul>
+    <p><a href="/form">Go back</a></p>
     <script>
       
     </script>
