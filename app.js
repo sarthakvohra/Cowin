@@ -21,10 +21,11 @@ function abcd(districtID, date) {
   console.log(url);
   var request = new XMLHttpRequest();
   request.open("GET", url, true);
+  var centres;
   request.onload = function () {
     if (request.status >= 200 && request.status < 400) {
       // Success!
-      data[i] = JSON.parse(request.responseText);
+      data[i] = JSON.parse(request.responseText); //bug over here
       // centres = data[i]["sessions"];
       i++;
       // console.log(centres);
@@ -32,15 +33,12 @@ function abcd(districtID, date) {
       // We reached our target server, but it returned an error
     }
   };
-
   request.onerror = function () {
     // There was a connection error of some sort
-    console.log("Connection Error...");
   };
   request.send();
   return data;
 }
-
 var districtID;
 
 today = new Date();
@@ -51,14 +49,17 @@ if (dd < 10) dd = "0" + dd;
 if (mm < 10) mm = "0" + mm;
 date = dd + "-" + mm + "-" + yyyy;
 // centres = abcd("149", date);
-centres = abcd(districtID, date);
-console.log(centres);
+centres = abcd("149", "24-05-2021"); //works with this
+// centres = abcd(districtID, "24-05-2021");    ///doesn't work with it
 
+// console.log(centres);
 app.get("/:id", (req, res) => {
-  // console.log(date);
   const id = req.params.id;
-  districtID = id;
-  res.render("index", { centres: centres[0]["centers"] });
+  districtID = String(id);
+  // console.log(id);
+  // centres = abcd("149", "24-05-2021");
+  // centres = abcd(districtID, "24-05-2021");
+  res.render("index", { centres: centres[-1]["centers"] });
 });
 
 app.get("/form", (req, res) => res.render("getDistrict"));
