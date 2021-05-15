@@ -7,7 +7,7 @@
 
   <body>
     <div class="mypanel"></div>
-    <ul>
+    <ul><% if(age==0){%>
       <% if(centres.length>0){
         var totalCentres=0;
       centres.forEach(centre=>{ 
@@ -42,6 +42,46 @@
     <%}} else {%>
       <p>No centres found.</p>
       <%}%>
+      <%}
+
+
+      else{ %>
+        <% if(centres.length>0){
+        var totalCentres=0;
+      centres.forEach(centre=>{ 
+        var ctr=0;
+        sessions=centre.sessions;
+        sessions.forEach(session=>{
+          if(session.available_capacity>0&&session.min_age_limit==age){
+          ctr+=1;
+          totalCentres+=1;}
+        });
+        if(ctr>0){%>
+      <li>
+        <h3>Centre name: <%=centre.name%></h3>
+        <br>Address: <%=centre.address%></br>
+        <ul>
+        <% sessions.forEach(session=>{
+          if(session.available_capacity>0&&session.min_age_limit==age){ %>
+            
+            <li>Date: <%=session.date%>
+            <br>Vaccine: <%=session.vaccine%>
+            <br>Capacity: <%=session.available_capacity%>
+            <br>Min age: <%=session.min_age_limit%></Date:></li>
+            
+         <% }
+        });%>
+        </ul>
+      </li>
+      <%}%>
+      <% }); 
+    if (totalCentres==0){ %>
+      <p>No centres found.</p>
+    <%}} else {%>
+      <p>No centres found.</p>
+      <%}%>
+      <%}%>
+
     </ul>
     <p><a href="/form">Go back</a></p>
     <script>
