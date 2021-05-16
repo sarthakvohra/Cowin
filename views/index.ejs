@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>JavaScript - read JSON from URL</title>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <title>Details of centres with available vaccine</title>
+    <link rel="stylesheet" href="/styles.css" />
   </head>
 
   <body>
-    <div class="mypanel"></div>
-    <ul><% if(age==0){%>
+    <ul class="centres"><% if(age==0){%>
       <% if(centres.length>0){
         var totalCentres=0;
       centres.forEach(centre=>{ 
@@ -19,14 +18,14 @@
           totalCentres+=1;}
         });
         if(ctr>0){%>
-      <li>
+      <li class="centre">
         <h3>Centre name: <%=centre.name%></h3>
-        <br>Address: <%=centre.address%></br>
-        <ul>
+        <p>Address: <%=centre.address%></p>
+        <ul class="sessions">
         <% sessions.forEach(session=>{
           if(session.available_capacity>0){ %>
             
-            <li>Date: <%=session.date%>
+            <li class="session">Date: <%=session.date%>
             <br>Vaccine: <%=session.vaccine%>
             <br>Capacity: <%=session.available_capacity%>
             <br>Min age: <%=session.min_age_limit%></Date:></li>
@@ -57,18 +56,18 @@
           totalCentres+=1;}
         });
         if(ctr>0){%>
-      <li>
+          <li class="centre">
         <h3>Centre name: <%=centre.name%></h3>
-        <br>Address: <%=centre.address%></br>
-        <ul>
+        <p>Address: <%=centre.address%></p>
+        <ul class="sessions">
         <% sessions.forEach(session=>{
-          if(session.available_capacity>0&&session.min_age_limit==age){ %>
+          if(session.available_capacity>0){ %>
             
-            <li>Date: <%=session.date%>
+            <li class="session">Date: <%=session.date%>
             <br>Vaccine: <%=session.vaccine%>
             <br>Capacity: <%=session.available_capacity%>
             <br>Min age: <%=session.min_age_limit%></Date:></li>
-            
+              
          <% }
         });%>
         </ul>
@@ -83,6 +82,7 @@
       <%}%>
 
     </ul>
+    <br>
     <p><a href="/form">Go back</a></p>
     <script>
       

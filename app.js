@@ -5,6 +5,7 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 app.listen(3000);
 app.set("view engine", "ejs");
 
+app.use(express.static("public"));
 app.use(express.json());
 
 function getDate() {
