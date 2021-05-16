@@ -50,9 +50,10 @@ ul {
   background: burlywood;
   border: 2px solid #e7e7e7;
   border-radius: 7px;
-  padding: 1rem 1rem;
+  padding: 0.8rem 0.8rem;
   display: flex;
   align-items: center;
+  font-size: 0.9rem;
   justify-content: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }

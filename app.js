@@ -44,6 +44,7 @@ function abcd(districtID, date = getDate()) {
     request.send();
   });
 }
+app.get("/", (req, res) => res.redirect("/form"));
 
 app.get("/show/:id", (req, res) => {
   const path = req.params.id;
