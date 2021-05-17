@@ -65,18 +65,18 @@ def get_data(districtCode, date, vaccine="*"):
 
 x = datetime.datetime.now()
 date=x.strftime("%d-%m-%Y")
-# while True:       #to let the program refresh every minute
-#     ctr=0
-#     for i in range(4):
-#         x+=datetime.timedelta(days=i*7)
-#         date=x.strftime("%d-%m-%Y")
-#         # if get_data("149", date)==False:    #for south delhi
-#         if get_data("188", date)==False:      #for gurgaon
-#             # print(f'Week {i+1}: No centre found')
-#             ctr+=1
-#     if ctr==4:
-#         print("No centre found")
-#     time.sleep(60)
+while True:       #to let the program refresh every minute
+    ctr=0
+    for i in range(4):
+        x+=datetime.timedelta(days=i*7)
+        date=x.strftime("%d-%m-%Y")
+        # if get_data("149", date)==False:    #for south delhi
+        if get_data("188", date)==False:      #for gurgaon
+            # print(f'Week {i+1}: No centre found')
+            ctr+=1
+    if ctr==4:
+        print("No centre found")
+    time.sleep(60)
 
 # get_data("149", "14-05-2021", "COVAXIN")
 ctr=0                  #to run the program only once
