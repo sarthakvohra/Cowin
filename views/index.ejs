@@ -61,13 +61,12 @@
         <p>Address: <%=centre.address%></p>
         <ul class="sessions">
         <% sessions.forEach(session=>{
-          if(session.available_capacity>1){ %>
+          if(session.available_capacity>1&&session.min_age_limit==age){ %>
             
             <li class="session">Date: <%=session.date%>
             <br>Vaccine: <%=session.vaccine%>
             <br>Capacity: <%=session.available_capacity%>
             <br>Min age: <%=session.min_age_limit%></Date:></li>
-              
          <% }
         });%>
         </ul>

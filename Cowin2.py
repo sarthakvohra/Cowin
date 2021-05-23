@@ -67,6 +67,8 @@ x = datetime.datetime.now()
 date=x.strftime("%d-%m-%Y")
 while True:       #to let the program refresh every minute
     ctr=0
+    x = datetime.datetime.now()
+    date=x.strftime("%d-%m-%Y")
     for i in range(4):
         x+=datetime.timedelta(days=i*7)
         date=x.strftime("%d-%m-%Y")
