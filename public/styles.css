@@ -46,6 +46,10 @@ ul {
   grid-gap: 0.5rem;
   padding: 0.5rem;
 }
+.sessions:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+  background: rgb(255, 238, 211);
+}
 .session {
   background: burlywood;
   border: 2px solid #e7e7e7;
@@ -56,6 +60,12 @@ ul {
   font-size: 0.9rem;
   justify-content: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.session:hover {
+  border: 2px solid burlywood;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+  background: rgb(231, 192, 142);
+  cursor: pointer;
 }
 a {
   background: black;

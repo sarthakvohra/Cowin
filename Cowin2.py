@@ -4,7 +4,7 @@ import datetime
 import time
 headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 # url="https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=149&date=24-05-2021"
-url="https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=149&date=13-05-2021"
+url="https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=149&date=04-06-2021"
 
 
 
@@ -32,7 +32,7 @@ def get_data(districtCode, date, vaccine="*"):
                     sessions = centre["sessions"]
                 for ses in sessions:
                     if ses["available_capacity"]>0 and ses["vaccine"]==vaccine:
-                        print(f'Date: {ses["date"]}\nVaccine: {ses["vaccine"]}\nMin Age: {ses["min_age_limit"]}\nCapacity: {ses["available_capacity"]}')
+                        print(f'Date: {ses["date"]}\nVaccine: {ses["vaccine"]}\nMin Age: {ses["min_age_limit"]}\nCapacity: {ses["available_capacity"]}\nDose 1: {ses["available_capacity_dose1"]}')
             else:
                 for ses in sessions:
                     if ses["available_capacity"]>0:
@@ -44,7 +44,7 @@ def get_data(districtCode, date, vaccine="*"):
                     sessions = centre["sessions"]
                 for ses in sessions:
                     if ses["available_capacity"]>0:
-                        print(f'Date: {ses["date"]}\nVaccine: {ses["vaccine"]}\nMin Age: {ses["min_age_limit"]}\nCapacity: {ses["available_capacity"]}')
+                        print(f'Date: {ses["date"]}\nVaccine: {ses["vaccine"]}\nMin Age: {ses["min_age_limit"]}\nCapacity: {ses["available_capacity"]}\nDose 1: {ses["available_capacity_dose1"]}')
     
                 # print('No vaccine available at the centre :(')
 
