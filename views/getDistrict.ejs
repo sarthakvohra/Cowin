@@ -31,18 +31,17 @@
     </div>
     <script>
       var data;
-      var xhr = new XMLHttpRequest();
-      xhr.open(
+      var web = new XMLHttpRequest();
+      web.open(
         "GET",
         "https://cdn-api.co-vin.in/api/v2/admin/location/states",
         true
       );
-      xhr.onload = function () {
+      web.onload = function () {
         if (this.status >= 200 && this.status < 400) {
           data = JSON.parse(this.responseText);
           var states = data.states;
           var output;
-          // console.log(states);
           states.forEach((state) => {
             output +=
               "<option value='" +
@@ -51,30 +50,27 @@
               state.state_name +
               "</option>";
           });
-          // console.log(output);
           document.getElementById("states").innerHTML = output;
         }
       };
-      xhr.send();
+      web.send();
 
       const state = document.querySelector(".states");
       document.getElementById("button").addEventListener("click", (e) => {
-        // console.log(state.value);
 
         var data;
-        var xhr = new XMLHttpRequest();
-        xhr.open(
+        var web = new XMLHttpRequest();
+        web.open(
           "GET",
           "https://cdn-api.co-vin.in/api/v2/admin/location/districts/" +
             state.value,
           true
         );
-        xhr.onload = function () {
+        web.onload = function () {
           if (this.status >= 200 && this.status < 400) {
             data = JSON.parse(this.responseText);
             var districts = data.districts;
             var output;
-            // console.log(districts);
             districts.forEach((district) => {
               output +=
                 "<option value='" +
@@ -83,18 +79,15 @@
                 district.district_name +
                 "</option>";
             });
-            // console.log(output);
             document.getElementById("districts").innerHTML = output;
           }
         };
-        xhr.send();
+        web.send();
         const district = document.querySelector(".districts");
         document
           .getElementById("submit")
           .addEventListener("click", async (e) => {
-            // console.log(district.value);
-            // const districtID = district.value.district_id;
-            // const districtName = district.value.district_name;
+          
             var districtID = district.value;
             today = new Date();
             var dd = today.getDate();
@@ -104,16 +97,16 @@
             if (mm < 10) mm = "0" + mm;
             date = dd + "-" + mm + "-" + yyyy;
 
-            // console.log(typeof districtID);
+
             const age = document.querySelector(
               "input[name='age']:checked"
             ).value;
-            // console.log(age);
+
+
             try {
               const res = await fetch("/form", {
                 method: "POST",
                 body: JSON.stringify({ districtID, date, age }),
-                // body: JSON.stringify({ districtID, districtName, date }),
                 headers: { "Content-Type": "application/json" },
               });
               const data = await res.json();

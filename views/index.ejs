@@ -27,7 +27,8 @@
             
             <li class="session">Date: <%=session.date%>
             <br>Vaccine: <%=session.vaccine%>
-            <br>Capacity: <%=session.available_capacity%>
+            <br>Dose 1: <%=session.available_capacity_dose1%>
+            <br>Dose 2: <%=session.available_capacity_dose2%>
             <br>Min age: <%=session.min_age_limit%></Date:></li>
             
          <% }
@@ -65,8 +66,9 @@
             
             <li class="session">Date: <%=session.date%>
             <br>Vaccine: <%=session.vaccine%>
-            <br>Capacity: <%=session.available_capacity%>
-            <br>Min age: <%=session.min_age_limit%></Date:></li>
+            <br>Dose 1: <%=session.available_capacity_dose1%>
+            <br>Dose 2: <%=session.available_capacity_dose2%>
+            <br>Min age: <%=session.min_age_limit%></li>
          <% }
         });%>
         </ul>
@@ -82,7 +84,7 @@
 
     </ul>
     <br>
-    <p><a href="/form">Home</a></p>
+    <p><a href="/form">Go back</a></p>
     <script>
       
     </script>
