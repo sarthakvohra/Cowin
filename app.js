@@ -49,8 +49,7 @@ app.get("/", (req, res) => res.redirect("/form"));
 app.get("/show/:id", (req, res) => {
   const path = req.params.id;
   [id, age] = path.split(" ");
-  // console.log(id, age);
-  // id = arr[0];
+
   abcd(id)
     .then((data) => {
       res.render("index", { centres: data["centers"], age });
@@ -62,6 +61,5 @@ app.get("/form", (req, res) => res.render("getDistrict"));
 
 app.post("/form", (req, res) => {
   const { districtID, date, age } = req.body;
-  // console.log(districtID, date, age);
   res.json({ redirect: "/show/" + districtID + " " + age });
 });
