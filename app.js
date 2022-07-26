@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
 app.set("view engine", "ejs");
 
 app.use(express.static("public"));
@@ -40,6 +40,7 @@ function abcd(districtID, date = getDate()) {
     };
     request.onerror = function () {
       // There was a connection error of some sort
+       
     };
     request.send();
   });
@@ -49,6 +50,7 @@ app.get("/", (req, res) => res.redirect("/form"));
 app.get("/show/:id", (req, res) => {
   const path = req.params.id;
   [id, age] = path.split(" ");
+  // console.log(id, age);
 
   abcd(id)
     .then((data) => {
@@ -58,7 +60,7 @@ app.get("/show/:id", (req, res) => {
 });
 
 app.get("/form", (req, res) => res.render("getDistrict"));
-
+//made a change
 app.post("/form", (req, res) => {
   const { districtID, date, age } = req.body;
   res.json({ redirect: "/show/" + districtID + " " + age });
